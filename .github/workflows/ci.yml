@@ -17,7 +17,9 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install flask requests pydub
-      - name: Run tests
+      - name: Start server and run tests
         run: |
+          python audio_processing_service.py &  # Запускаем сервер в фоновом режиме
+          sleep 2  # Даём серверу время на запуск
           python test_audio_processing.py
           python test_history.py
