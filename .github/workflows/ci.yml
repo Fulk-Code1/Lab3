@@ -16,7 +16,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install dependencies
-        run: pip install flask requests pydub
+        run: |
+          pip install flask requests pydub
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg  # Установка ffmpeg
       - name: Start server and run tests
         run: |
           python audio_processing_service.py &  # Запускаем сервер в фоновом режиме
